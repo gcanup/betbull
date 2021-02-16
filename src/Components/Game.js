@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import ReactCardFlip from 'react-card-flip';
 
 import { Button, Card, CardText, Alert } from 'reactstrap';
 import PropTypes from 'prop-types'
@@ -57,14 +58,21 @@ const GamePage = (props) => {
         <p>{!reveal && <Alert color='info'>Please select Card and Reveal to see the result</Alert>}</p>.
         <div className='d-flex justify-content-around w-100'>
             {shuffledData && shuffledData.map(card => {
-                return <div key={card.id}>
-                    <Card
-                        className={`d-flex p-4 mb-3 ${selectedCard === card.id ? 'activeCard' : ''}`}
-                        onClick={() => setSelectedCard(card.id)}
-                    >
-                        <CardText className='align-self-center'>{reveal ? card.value : 'Card'}</CardText>
-                    </Card>
-                </div>
+                return (
+                    <ReactCardFlip isFlipped={reveal} flipDirection="vertical">
+                        <Card
+                            className={`d-flex p-4 mb-3 ${selectedCard === card.id ? 'activeCard' : ''}`}
+                            onClick={() => setSelectedCard(card.id)}
+                        >
+                            <CardText className='align-self-center'>Card</CardText>
+                        </Card>
+
+                        <Card
+                            className={`d-flex p-4 mb-3 ${selectedCard === card.id ? 'activeCard' : ''}`}>
+                            <CardText className='align-self-center'>{card.value}</CardText>
+                        </Card>
+                    </ReactCardFlip>
+                )
             })}
         </div>
         <Button
@@ -91,7 +99,14 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch)
 
 GamePage.propTypes = {
-    // setPage: PropTypes.func
+    cardData: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        value: PropTypes.number
+    }),
+    playerName: PropTypes.string,
+    history: PropTypes.object,
+    setScore: PropTypes.func
 }
 
 export default connect(listSelector, mapDispatchToProps)(GamePage)

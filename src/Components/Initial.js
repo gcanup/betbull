@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { Button, Label, Input, Alert } from 'reactstrap';
+import { Button, Input, Alert } from 'reactstrap';
 import PropTypes from 'prop-types'
 import { setName, setStake, fetchCardData } from '../Reducer/game.redux'
 import { listSelector } from '../Selectors/list.selector';
@@ -13,20 +13,16 @@ const InitialPage = (props) => {
 
   const clickHandler = () => {
     history.push('/game')
-    // fetchCardData()
+    fetchCardData()
   }
 
   return <div className='initial w-50'>
     <img src={logo} alt='bull logo' />
     <h4>Welcome to Betting Game</h4>
     <hr className='w-50' />
-    <h5>Current Bet Rate is {betRate}</h5>
+    <h5>Today's Bet Rate is <strong>{betRate}</strong></h5>
     <hr className='w-50' />
-
-    {/* <Label>Please enter your name </Label> */}
     <Input type='name' className='mb-2' name='name' placeholder='Player name' onChange={(e) => setName(e.target.value)} />
-
-    {/* <Label>Please enter your Bet Stake </Label> */}
     <Input type='number' name='stake' placeholder='Bet Stake' onChange={(e) => setStake(e.target.value)} />
     {betStake === 0 && <p style={{ 'color': 'red' }}> Please enter stake amount to proceed. </p>}
     {betStake > currentBalance ?
@@ -52,7 +48,11 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 InitialPage.propTypes = {
   setName: PropTypes.func,
   setStake: PropTypes.func,
-  fetchCardData: PropTypes.func
+  fetchCardData: PropTypes.func,
+  betRate: PropTypes.number,
+  history: PropTypes.object,
+  betStake: PropTypes.number,
+  currentBalance: PropTypes.number
 }
 
 export default connect(listSelector, mapDispatchToProps)(InitialPage)

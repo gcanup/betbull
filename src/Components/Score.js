@@ -8,7 +8,7 @@ import { listSelector } from '../Selectors/list.selector';
 import logo from '../images/logo.png'
 
 const ScorePage = (props) => {
-    const { currentBalance } = props
+    const { currentBalance, history } = props
     return <div className='score'>
         <img src={logo} alt='bull logo' />
         <h5>Your Balance:  </h5>
@@ -17,20 +17,19 @@ const ScorePage = (props) => {
         <Button
             className='button w-75'
             color='success'
-            onClick={() => props.history.push('/')}>
+            onClick={() => history.push('/')}>
             Bet Again
         </Button>
     </div>
-
 }
-
 
 const mapDispatchToProps = dispatch => bindActionCreators({
 
 }, dispatch)
 
 ScorePage.propTypes = {
-    setPage: PropTypes.func
+    currentBalance: PropTypes.number,
+    history: PropTypes.func
 }
 
 export default connect(listSelector, mapDispatchToProps)(ScorePage)

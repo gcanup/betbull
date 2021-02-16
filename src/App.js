@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-// import { Counter } from './features/counter/Counter';
 import InitialPage from './Components/Initial';
 import GamePage from './Components/Game';
 import ScorePage from './Components/Score';
