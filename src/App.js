@@ -9,15 +9,17 @@ import './App.scss';
 
 const App = () => {
   return (
-    <div className='App w-75 text-center d-flex'>
-      <div className='align-self-center text-center w-100'>
-        <Router>
-          <Switch>
-            <Route exact path='/game' component={GamePage} />
-            <Route exact path='/score' component={ScorePage} />
-            <Route path='/' component={InitialPage} />
-          </Switch>
-        </Router>
+    <div className='App w-100 text-center d-flex'>
+      <div className='backdrop w-100'>
+        <div className='content p-3 w-50'>
+          <Router>
+            <Switch>
+              <Route exact path='/game' component={GamePage} />
+              <Route exact path='/score' component={ScorePage} />
+              <Route path='/' component={InitialPage} />
+            </Switch>
+          </Router>
+        </div>
       </div>
     </div>
   )

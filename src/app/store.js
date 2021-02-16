@@ -1,10 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from '../features/counter/counterSlice'
-import { gameReducer } from '../Reducer/gameReducer'
+import { applyMiddleware, createStore } from 'redux'
+import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 
-export default configureStore({
-  reducer: {
-    counter: counterReducer,
-    game: gameReducer
-  },
-})
+import rootReducer from '../Reducer/rootReducer'
+
+export default createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+)

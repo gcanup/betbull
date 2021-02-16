@@ -4,36 +4,33 @@ import { bindActionCreators } from 'redux'
 
 import { Button } from 'reactstrap';
 import PropTypes from 'prop-types'
-import { setPage } from '../Reducer/gameReducer'
+import { listSelector } from '../Selectors/list.selector';
+import logo from '../images/logo.png'
 
-const Score = (props) => {
-    console.log(props.page)
+const ScorePage = (props) => {
+    const { currentBalance } = props
+    return <div className='score'>
+        <img src={logo} alt='bull logo' />
+        <h5>Your Balance:  </h5>
+        <hr className='w-50' />
+        <p className='balance'>£ {currentBalance}</p>
+        <Button
+            className='button w-75'
+            color='success'
+            onClick={() => props.history.push('/')}>
+            Bet Again
+        </Button>
+    </div>
 
-    return <>
-        It is score page
-        <Button onClick={() => props.setPage('game')}>Start </Button>
-        <button
-            className='button w-100'
-            onClick={() => props.history.push('/')}
-        > onClick</button>
-    </>
-
-}
-
-const mapStateToProps = state => {
-    const { page } = state.game
-    return {
-        page
-    }
 }
 
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    setPage
+
 }, dispatch)
 
-Score.propTypes = {
+ScorePage.propTypes = {
     setPage: PropTypes.func
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Score)
+export default connect(listSelector, mapDispatchToProps)(ScorePage)

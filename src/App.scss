@@ -1,7 +1,95 @@
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+
 .App {
   text-align: center;
   margin: auto;
   min-height: 100vh;
   // overflow-y: scroll;
+  background: url('./images/bg.png') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  .backdrop {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+  }
+
+  .content {
+    background-color: white;
+    border-radius: 15px;
+
+    .initial {
+      margin: auto;
+    }
+
+    .game {
+      margin: auto;
+
+      .card {
+        height: 200px;
+        width: 150px;
+        background-color: #4cb8475c;
+        border: none;
+        margin: 5px;
+        color: grey;
+        background: url('./images/card.png'); 
+        background-size: cover;
+        cursor: pointer;
+
+        .card-text {
+          padding: 0 10px;
+          font-size: 16px;
+          background-color: white;
+        }
+      }
+
+      .activeCard {
+        .card-text {
+          background-color: #4cb847;
+          color: white;
+        }
+      }
+    }
+
+    .score {
+      .balance {
+        font-size: 36px;
+      }
+    }
+  }
+
+  hr {
+    border: solid 1px #4cb847;
+  }
+
+  label {
+    color: red;
+  }
+
+  @media screen and (max-width: $screen-lg) {
+    .content {
+      width: 100% !important;
+    }
+  }
+
+@media screen and (max-width: $screen-sm) {
+  .content {
+    .initial {
+      width: 100% !important;
+    }
+    .game {
+      .card {
+        height: 150px;
+        width: 100px;
+    }
+  }
+  }
+}
 }
 
