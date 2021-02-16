@@ -1,17 +1,26 @@
 import React from 'react';
-import { Counter } from './features/counter/Counter';
-import './App.css';
-import InitialPage from './Components/InitialPage';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-function App() {
+// import { Counter } from './features/counter/Counter';
+import InitialPage from './Components/Initial';
+import GamePage from './Components/Game';
+import ScorePage from './Components/Score';
+import './App.scss';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <Counter /> */}
-        <InitialPage />
-      </header>
+    <div className='App w-75 text-center d-flex'>
+      <div className='align-self-center text-center w-100'>
+        <Router>
+          <Switch>
+            <Route exact path='/game' component={GamePage} />
+            <Route exact path='/score' component={ScorePage} />
+            <Route path='/' component={InitialPage} />
+          </Switch>
+        </Router>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
