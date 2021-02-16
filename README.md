@@ -15,6 +15,7 @@
 > Betting input is mandatory and should be less than balance amount but greater than 0
 > Buttons will be disable untile bet input, card selection and revealed
 > Alert messages apear on each reveal
+> Types checked in each page with react-proptypes
 
 ## Improvement
 > Multiple reducer file can be added for simplicity
